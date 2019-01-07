@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\Map;
 use Auth;
 
 class VoteController extends Controller
@@ -10,12 +11,18 @@ class VoteController extends Controller
 
     public function index()
     {
-        $user = Auth::user();
-        if ($user) {
-            return view('vote')->with(['user' => $user]);
-        } else {
-            return view('index');
-        }
+        return view('index')->with(['user' => Auth::user()]);
+    }
+
+    public function vote()
+    {
+        $maps = Map::randomMaps(2);
+        return view('vote')->with(
+            [
+                'user' => Auth::user(),
+                'maps' => $maps,
+            ]
+        );
     }
 
     public function store(VoteRequest $r)

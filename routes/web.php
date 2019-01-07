@@ -14,9 +14,13 @@
 Auth::routes();
 Route::get('auth/steam', 'AuthController@redirectToSteam')->name('auth.steam');
 Route::get('auth/steam/handle', 'AuthController@handle')->name('auth.steam.handle');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+// Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', 'VoteController@index');
-    Route::post('/', 'VoteController@store');
+    Route::get('/vote', 'VoteController@vote');
+    Route::post('/vote', 'VoteController@store');
 });
+
+// i don't feel like making a login route so just go straight to steam
+Route::get('/login', function(){ return redirect('/auth/steam'); });

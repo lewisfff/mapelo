@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Map extends Model
 {
-    use Notifiable;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -17,5 +15,12 @@ class Map extends Model
         'name',
         'cached_elo',
     ];
+
+    public static function randomMaps($count = 2)
+    {
+        return Map::inRandomOrder()
+            ->take($count)
+            ->pluck('name');
+    }
 
 }
