@@ -17,10 +17,10 @@ class CreateVotesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedInteger('map_harder_id')->nullable();
-            $table->foreign('map_harder_id')->references('id')->on('maps')->onDelete('cascade');
-            $table->unsignedInteger('map_easier_id')->nullable();
-            $table->foreign('map_easier_id')->references('id')->on('maps')->onDelete('cascade');
+            $table->string('map_harder')->nullable();
+            $table->foreign('map_harder')->references('name')->on('maps')->onDelete('cascade');
+            $table->string('map_easier')->nullable();
+            $table->foreign('map_easier')->references('name')->on('maps')->onDelete('cascade');
             $table->timestamps();
         });
     }

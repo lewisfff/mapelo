@@ -13,8 +13,8 @@ class Vote extends Model
      */
     protected $fillable = [
         'user_id',
-        'map_harder_id',
-        'map_easier_id',
+        'map_harder',
+        'map_easier',
     ];
 
 }

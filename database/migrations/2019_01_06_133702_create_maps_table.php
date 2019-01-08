@@ -14,8 +14,7 @@ class CreateMapsTable extends Migration
     public function up()
     {
         Schema::create('maps', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
+            $table->string('name')->primary();
             $table->integer('cached_elo')->default(0);
             $table->timestamps();
         });

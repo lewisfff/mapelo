@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('steamid', 17);
             $table->timestamp('last_sign_in')->useCurrent();
             $table->timestamp('last_voted')->nullable();
+            $table->tinyInteger('votes_remaining')->default('0');
             $table->rememberToken();
             $table->timestamps();
         });
